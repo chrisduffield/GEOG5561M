@@ -4,7 +4,7 @@ import java.util.StringTokenizer;
 
 public class IO {
 
-    public double[][] readData(String myFile) {
+    public static double[][] readData(String myFile) {
         double[][] data = null;
 
         BufferedReader br = null;
@@ -86,9 +86,9 @@ public class IO {
             System.out.println("");
         }
 
-        return new double[][] {};
+        return data;
     }
-    public void writeData(double[][] dataIn) {
+    public static void writeData(double[][] dataIn) {
         BufferedWriter bw = null;
 
         try {
