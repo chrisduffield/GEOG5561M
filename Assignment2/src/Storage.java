@@ -26,16 +26,25 @@ public class Storage {
         return p;
     }
 
-    public Point moveBacteria(Point startPosition, int numIter, double north, double south, double east){
+    public Point moveBacteria(Point startPosition, int height, double rise, double stay, double north, double south, double east){
 
         int x = (int)startPosition.getX();
         int y = (int)startPosition.getY();
+        int z = height;
 
-        for (int i = 0 ; i < numIter; i++){
-            double ran = Math.random();
-            if(ran < north) {y = y+1;}
-            else if (ran < north + south){y = y-1;}
-            else if (ran < north + south + east){x = x+1;}
+        while (height > 0){
+            double ranh = Math.random();
+            double randir = Math.random();
+
+            if(z >= height) {
+                if(ranh < rise) {height = height + 1;}
+                else if(ranh < rise + stay) {}
+                else {height = height - 1;}
+            } else {height = height - 1;}
+
+            if(randir < north) {y = y+1;}
+            else if (randir < north + south){y = y-1;}
+            else if (randir < north + south + east){x = x+1;}
             else {x = x-1;}
         }
 
