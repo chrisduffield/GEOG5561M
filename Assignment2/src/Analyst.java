@@ -7,6 +7,7 @@ import static java.lang.Boolean.TRUE;
 public class Analyst extends Frame{
     public Analyst () {
 
+
         Storage store = new Storage();
 
         Frame frame = new Frame("My Window");
@@ -90,7 +91,9 @@ public class Analyst extends Frame{
                     msg.setVisible(TRUE);
                 } else {
 
-                    store.moveBacteria(store.getBombSite(),intHeight, dblRise, dblStay, dblNorth, dblSouth, dblEast);
+                    Simulation sim = new Simulation();
+                    sim.runSim(store,intIter,intHeight, dblRise, dblStay, dblNorth, dblSouth, dblEast);
+                    sim.getDataAsImage(intIter);
                 }
 
 
@@ -122,9 +125,14 @@ public class Analyst extends Frame{
             }
         });
 
+        //set panelThree
+        /*
+        public void paint(Graphics g) {
+            Image image = sim.getDataAsImage(); // or equivalent
+            g.drawImage(image, getInsets().left, getInsets().top, this);
+        }
 
-
-
+        */
 
 
 
