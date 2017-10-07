@@ -88,7 +88,7 @@ public class IO {
 
         return data;
     }
-    public static void writeData(double[][] dataIn) {
+    public static void writeData(Double[][] dataIn) {
         BufferedWriter bw = null;
 
         try {

@@ -90,10 +90,8 @@ public class Analyst extends Frame{
                     msg.add(btnDismiss);
                     msg.setVisible(TRUE);
                 } else {
-
-                    Simulation sim = new Simulation();
-                    sim.runSim(store,intIter,intHeight, dblRise, dblStay, dblNorth, dblSouth, dblEast);
-                    sim.getDataAsImage(intIter);
+                    store.runSim(intIter,intHeight, dblRise, dblStay, dblNorth, dblSouth, dblEast);
+                    store.getDataAsImage(intIter, panelThree);
                 }
 
 
@@ -112,28 +110,22 @@ public class Analyst extends Frame{
             public void actionPerformed(ActionEvent e) {
                 FileDialog fd = new FileDialog(frame, "Choose a file", FileDialog.LOAD);
                 fd.setDirectory("C:\\");
-                fd.setFile("*.txt");
+                fd.setFile("*.raster");
                 fd.setVisible(true);
+                String path = fd.getDirectory();
                 String filename = fd.getFile();
-                if (filename == null)
+                if ((path == null) || (filename == null))
                     System.out.println("You cancelled the choice");
                 else
-                    System.out.println("You chose " + filename);
-                    store.setData(IO.readData(filename));
-                    panelFour.add(btnRun);
-                //System.out.println("Running");
+                    System.out.println("You choose " + filename);
+                    store.setData(IO.readData(path + filename));
+
+                    //panelFour.add(btnRun);
+                    btnRun.setVisible(true);
+                    panelFour.repaint();
+                    frame.repaint();
             }
         });
-
-        //set panelThree
-        /*
-        public void paint(Graphics g) {
-            Image image = sim.getDataAsImage(); // or equivalent
-            g.drawImage(image, getInsets().left, getInsets().top, this);
-        }
-
-        */
-
 
 
         frame.addWindowListener(new WindowAdapter(){
@@ -175,7 +167,8 @@ public class Analyst extends Frame{
         //panelTwo.add(btnGetVals);
 
 
-        //panelFour.add(btnRun, BorderLayout.CENTER);
+        panelFour.add(btnRun, BorderLayout.CENTER);
+        //btnRun.setVisible(false);
 
         frame.setVisible(true);
 
