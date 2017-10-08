@@ -1,9 +1,16 @@
+import javax.imageio.ImageIO;
 import java.awt.*;
+import java.awt.image.BufferedImage;
 import java.io.*;
 import java.util.StringTokenizer;
 
 public class IO {
 
+    /**
+     * This method reads a file into a two dimensional array
+     * @param myFile The name of the file to read
+     * @return A two dimensional array of doubles
+     */
     public static double[][] readData(String myFile) {
         double[][] data = null;
 
@@ -37,9 +44,6 @@ public class IO {
             }
         }
 
-// Reopen the file at the top and read the
-// file into a String array of the right size.
-
         try {
             br = new BufferedReader(new FileReader(f));
         } catch (FileNotFoundException e) {
@@ -62,8 +66,6 @@ public class IO {
             }
         }
 
-// Convert each line into an array of double data.
-
         data = new double [lines][];
 
         for (int i = 0; i < lines; i++) {
@@ -76,7 +78,6 @@ public class IO {
             }
         }
 
-// Check data.
 
         for (int i = 0; i < data.length; i++) {
             for (int j = 0; j < data[i].length; j++) {
@@ -88,7 +89,12 @@ public class IO {
 
         return data;
     }
-    public static void writeData(Double[][] dataIn) {
+
+    /**
+     * This method saves the array to a file.
+     * @param dataOut The array to be saved
+     */
+    public static void writeData(Double[][] dataOut) {
         BufferedWriter bw = null;
 
         try {
@@ -100,10 +106,10 @@ public class IO {
         String tempStr = "";
 
         try{
-            for (int i = 0; i < dataIn.length; i++) {
-                for (int j = 0; j < dataIn[i].length; j++) {
+            for (int i = 0; i < dataOut.length; i++) {
+                for (int j = 0; j < dataOut[i].length; j++) {
 
-                    tempStr = String.valueOf(dataIn[i][j]);
+                    tempStr = String.valueOf(dataOut[i][j]);
                     System.out.print(tempStr + ", ");
                     bw.write(tempStr + ", ");
 
@@ -116,6 +122,24 @@ public class IO {
             e.printStackTrace();
         } finally {
 
+        }
+    }
+
+    /**
+     * THis method saves the image to a file
+     * @param img The image to be saved
+     * @param pathname The directory to same output.png to
+     */
+    public static void writeImage (Image img, String pathname) {
+        try {
+
+            BufferedImage bufImage = new BufferedImage(300, 300, BufferedImage.TYPE_BYTE_BINARY);
+            bufImage.getGraphics().drawImage(img, 0, 0 , null);
+            File outputFile = new File(pathname);
+            outputFile.createNewFile();
+            ImageIO.write(bufImage, "png", outputFile);
+        } catch (IOException e) {
+            e.printStackTrace();
         }
     }
 }

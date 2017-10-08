@@ -1,3 +1,25 @@
+/**
+        * Analyst.java 1.0 8 October 2017
+        *
+        * Copyright (c) School of Geography.
+        * University of Leeds, Leeds, West Yorkshire, UK. LS2 9JT
+        * All rights reserved.
+        *
+        * This code is provided under the Academic Academic Free License v. 3.0.
+        * For details, please see the http://www.opensource.org/licenses/AFL-3.0.
+        */
+
+/**
+ * This class processes and displays an array of geographical data.
+ * The Analyst class prepares the GUI to load a file with the bomb site and then
+ * runs the simulation as designed in the storage class. It uses the IO class in order
+ * to read and write the files involved.
+ *
+ * @author Student number 201088763
+ * @version 1.0 8 October 2017
+ *
+ */
+
 import java.awt.*;
 import java.awt.event.*;
 
